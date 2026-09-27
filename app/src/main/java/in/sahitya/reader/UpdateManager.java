@@ -37,7 +37,7 @@ public final class UpdateManager {
 
     public static void check(Context context,String manifestUrl,CheckCallback callback){
         WORKER.execute(()->{try{
-            HttpURLConnection c=open(manifestUrl);c.setRequestProperty("Accept","application/json");
+            HttpURLConnection c=open(manifestUrl,"application/json");
             byte[] bytes=readLimited(c.getInputStream(),MAX_MANIFEST_BYTES);c.disconnect();JSONObject json=new JSONObject(new String(bytes,java.nio.charset.StandardCharsets.UTF_8));
             int version=json.getInt("versionCode");String name=json.optString("versionName",String.valueOf(version));String apk=requiredHttps(json.getString("apkUrl"));String hash=json.getString("sha256").toLowerCase(Locale.ROOT);String notes=json.optString("releaseNotes","");
             if(!hash.matches("[0-9a-f]{64}"))throw new IOException("The update manifest has an invalid SHA-256 checksum.");
@@ -46,7 +46,7 @@ public final class UpdateManager {
     }
     public static void download(Context context,UpdateInfo info,DownloadCallback callback){
         WORKER.execute(()->{File target=null;try{
-            HttpURLConnection c=open(info.apkUrl);c.setRequestProperty("Accept","application/vnd.android.package-archive, application/octet-stream");
+            HttpURLConnection c=open(info.apkUrl,"application/vnd.android.package-archive, application/octet-stream");
             int declared=c.getContentLength();if(declared>MAX_APK_BYTES)throw new IOException("The APK is larger than the 200 MB limit.");
             File dir=new File(context.getCacheDir(),"updates");if(!dir.exists()&&!dir.mkdirs())throw new IOException("Could not create a temporary update folder.");target=new File(dir,"sahitya-"+info.versionCode+".apk");
             MessageDigest digest=MessageDigest.getInstance("SHA-256");long total=0;try(InputStream in=c.getInputStream();OutputStream out=new FileOutputStream(target)){byte[] b=new byte[32768];int n;while((n=in.read(b))!=-1){total+=n;if(total>MAX_APK_BYTES)throw new IOException("The APK is larger than the 200 MB limit.");digest.update(b,0,n);out.write(b,0,n);}}finally{c.disconnect();}
@@ -68,8 +68,8 @@ public final class UpdateManager {
         }catch(Exception e){if(sessionId!=-1)try{activity.getPackageManager().getPackageInstaller().abandonSession(sessionId);}catch(Exception ignored){}post(()->callback.complete(message(e)));}});
     }
 
-    private static HttpURLConnection open(String address)throws Exception{
-        URL url=new URL(requiredHttps(address));HttpURLConnection c=(HttpURLConnection)url.openConnection();c.setConnectTimeout(15000);c.setReadTimeout(30000);c.setInstanceFollowRedirects(true);c.setRequestMethod("GET");c.connect();
+    private static HttpURLConnection open(String address,String accept)throws Exception{
+        URL url=new URL(requiredHttps(address));HttpURLConnection c=(HttpURLConnection)url.openConnection();c.setConnectTimeout(15000);c.setReadTimeout(30000);c.setInstanceFollowRedirects(true);c.setRequestMethod("GET");c.setRequestProperty("Accept",accept);c.connect();
         if(!"https".equalsIgnoreCase(c.getURL().getProtocol())){c.disconnect();throw new IOException("Updates must use HTTPS, including after redirects.");}
         int status=c.getResponseCode();if(status<200||status>=300){c.disconnect();throw new IOException("Update server returned HTTP "+status+".");}return c;
     }

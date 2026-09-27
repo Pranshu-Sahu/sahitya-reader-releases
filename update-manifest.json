@@ -1,7 +1,7 @@
 {
-  "versionCode": 3,
-  "versionName": "1.2",
-  "apkUrl": "https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/releases/sahitya-reader-1.2.apk",
-  "sha256": "a96c1a7adf2650671bc5dcad7ad1de15721cf2ee27c22e5b6f311d3ba90e554d",
-  "releaseNotes": "Adds an update checker with verified APK download and Android installation."
+  "versionCode": 4,
+  "versionName": "1.3",
+  "apkUrl": "https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/releases/sahitya-reader-1.3.apk",
+  "sha256": "52a73fd66fee92d2c44344e26866f90a2638fd0eb20dc4f2f1d1e0ce7d88f2c8",
+  "releaseNotes": "Fixes the update check and download request configuration."
 }
