@@ -20,7 +20,7 @@ An importable Hindi TXT draft and its page-by-page source record are in `content
 
 ## In-app updates
 
-Tap the circular-arrow icon in the library and enter the HTTPS address of your hosted `update-manifest.json`. Long-press that icon later to change the update source. The app checks the manifest when asked, downloads a newer APK, checks its SHA-256 checksum, and opens Android's installer. Android may ask you to allow Sahitya Reader to install updates from this source.
+Tap the circular-arrow icon in the library and enter the HTTPS address of your hosted `update-manifest.json`. The current personal feed is `https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/update-manifest.json`. Long-press that icon later to change the update source. The app checks the manifest when asked, downloads a newer APK, checks its SHA-256 checksum, and opens Android's installer. Android may ask you to allow Sahitya Reader to install updates from this source.
 
 Host a copy of `update-manifest.example.json` alongside your APK, then set:
 
@@ -30,4 +30,4 @@ Host a copy of `update-manifest.example.json` alongside your APK, then set:
 - `sha256` to the APK's SHA-256 digest. On Windows, run `Get-FileHash .\sahitya-reader.apk -Algorithm SHA256` and copy the `Hash` value.
 - `releaseNotes` to a short description of the changes.
 
-Android only accepts an update signed with the same signing certificate as the installed app. Keep using the same signing key for every release; the debug APKs built by Gradle are signed with the local Android debug key. For a personal sideloaded install, preserve that key on the build machine. The example manifest is a template and must be filled in with the actual APK URL and checksum before use.
+Android only accepts an update signed with the same signing certificate as the installed app. This personal APK is signed with the local Android debug key; keep using that key for future releases. If your existing installation was signed with a different key, Android will not install this APK over it. The example manifest is a template; the current feed uses the matching APK and checksum hosted in this repository.
