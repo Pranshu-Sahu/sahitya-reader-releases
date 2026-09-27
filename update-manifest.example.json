@@ -1,0 +1,7 @@
+{
+  "versionCode": 3,
+  "versionName": "1.2",
+  "apkUrl": "https://example.com/releases/sahitya-reader-1.2.apk",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "releaseNotes": "Describe the changes in this release."
+}
