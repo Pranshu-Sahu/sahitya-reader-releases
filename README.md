@@ -16,7 +16,7 @@ Imported files and reading data stay in the app's private local storage. The app
 
 ## Godaan reading material
 
-The APK includes the Hindi TXT draft in the library automatically. It contains scan leaves 3–102, not 100 verified printed folios. Long-press the bundled book and choose **About this edition** to see its attribution and checking notes. The source text and page-by-page audit are in `content/godaan-first-100/`.
+The APK includes the complete Hindi novel as a 611-page PDF in the library automatically. The PDF comes from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Godan_-_Premchand_-_Hindi_Novel.pdf). The earlier Hindi TXT draft remains available as a separate library item; it contains scan leaves 3–102, not 100 verified printed folios. Long-press that draft and choose **About this edition** to see its attribution and checking notes. Its source text and page-by-page audit are in `content/godaan-first-100/`.
 
 ## In-app updates
 
