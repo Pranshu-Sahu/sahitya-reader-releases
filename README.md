@@ -16,7 +16,7 @@ Imported files and reading data stay in the app's private local storage. The app
 
 ## Godaan reading material
 
-The APK includes the complete Hindi novel as selectable text in 36 chapters. Swipe horizontally between chapters and long press near the center of the reading area to open the reading menu. The old 100-page draft is removed automatically when an existing installation updates. The previous 611-page PDF remains in `content/` for source reference; its embedded Hindi text layer is too error-prone for comfortable reading. The reading copy uses the complete [Hindi Wikisource transcription](https://hi.wikisource.org/wiki/%E0%A4%97%E0%A5%8B-%E0%A4%A6%E0%A4%BE%E0%A4%A8), which may have occasional proofreading errors. Attribution and edition notes are available by long-pressing the Godaan library tile.
+The APK includes the complete Hindi novel as selectable text in 36 chapters. Swipe horizontally between chapters and long press near the center of the reading area to open the reading menu. The old 100-page draft is removed automatically when an existing installation updates. The previous 611-page PDF remains in `content/` for source reference; its embedded Hindi text layer is too error-prone for comfortable reading. Version 1.7 replaces the earlier error-prone transcription with the [proofread Wikisource pages of गोदान.pdf](https://hi.wikisource.org/wiki/%E0%A4%AA%E0%A5%83%E0%A4%B7%E0%A5%8D%E0%A4%A0:%E0%A4%97%E0%A5%8B%E0%A4%A6%E0%A4%BE%E0%A4%A8.pdf/%E0%A5%A7%E0%A5%A7). On update, the app refreshes the saved chapter files while preserving reading progress. Attribution and edition notes are available by long-pressing the Godaan library tile.
 
 ## In-app updates
 

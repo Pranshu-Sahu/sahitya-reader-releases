@@ -56,10 +56,13 @@ public class MainActivity extends Activity {
         File library=new File(getFilesDir(),"library");File target=new File(library,"godaan-chapters");
         if(!target.exists()&&!target.mkdirs())return;
         try{
+            android.content.SharedPreferences preferences=getSharedPreferences("reader_preferences",MODE_PRIVATE);
+            boolean refreshText=preferences.getInt("godaan_content_revision",0)<2;
             for(int chapter=1;chapter<=36;chapter++){
                 String name=String.format(Locale.ROOT,"%02d.txt",chapter);File page=new File(target,name);
-                if(!page.isFile()||page.length()==0){try(InputStream in=getAssets().open("godaan-chapters/"+name);OutputStream out=new FileOutputStream(page)){byte[] buffer=new byte[8192];int n;while((n=in.read(buffer))!=-1)out.write(buffer,0,n);}}
+                if(refreshText||!page.isFile()||page.length()==0){try(InputStream in=getAssets().open("godaan-chapters/"+name);OutputStream out=new FileOutputStream(page)){byte[] buffer=new byte[8192];int n;while((n=in.read(buffer))!=-1)out.write(buffer,0,n);}}
             }
+            preferences.edit().putInt("godaan_content_revision",2).apply();
             String path=target.getAbsolutePath();String title="गोदान — प्रेमचंद (संपूर्ण उपन्यास)";
             File oldPdf=new File(library,"godaan-complete-hi.pdf");File oldDraft=new File(library,"godaan-first-100-pages-hi.txt");
             if(db.hasBookPath(oldPdf.getAbsolutePath()))db.replaceBundledBook(oldPdf.getAbsolutePath(),path,title);
