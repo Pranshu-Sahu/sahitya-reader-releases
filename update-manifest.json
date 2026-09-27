@@ -1,7 +1,7 @@
 {
-  "versionCode": 6,
-  "versionName": "1.5",
-  "apkUrl": "https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/releases/sahitya-reader-1.5.apk",
-  "sha256": "020931cbfd86cb00c952e4fcd65d6d86dcae09ba871f2d34fbd4216d18ecd8d9",
-  "releaseNotes": "Adds the complete Hindi Godaan novel as an offline 611-page PDF."
+  "versionCode": 7,
+  "versionName": "1.6",
+  "apkUrl": "https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/releases/sahitya-reader-1.6.apk",
+  "sha256": "b180ce41b04d7706f92dcec471deeb7be3e23ba88942cfef6de31ec48cdd6840",
+  "releaseNotes": "Complete Godaan in 36 readable Hindi chapters, a full-screen reader with long-press controls, and one-tap update checking."
 }

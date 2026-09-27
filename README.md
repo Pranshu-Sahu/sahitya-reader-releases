@@ -16,11 +16,11 @@ Imported files and reading data stay in the app's private local storage. The app
 
 ## Godaan reading material
 
-The APK includes the complete Hindi novel as a 611-page PDF in the library automatically. The PDF comes from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Godan_-_Premchand_-_Hindi_Novel.pdf). The earlier Hindi TXT draft remains available as a separate library item; it contains scan leaves 3–102, not 100 verified printed folios. Long-press that draft and choose **About this edition** to see its attribution and checking notes. Its source text and page-by-page audit are in `content/godaan-first-100/`.
+The APK includes the complete Hindi novel as selectable text in 36 chapters. Swipe horizontally between chapters and long press near the center of the reading area to open the reading menu. The old 100-page draft is removed automatically when an existing installation updates. The previous 611-page PDF remains in `content/` for source reference; its embedded Hindi text layer is too error-prone for comfortable reading. The reading copy uses the complete [Hindi Wikisource transcription](https://hi.wikisource.org/wiki/%E0%A4%97%E0%A5%8B-%E0%A4%A6%E0%A4%BE%E0%A4%A8), which may have occasional proofreading errors. Attribution and edition notes are available by long-pressing the Godaan library tile.
 
 ## In-app updates
 
-Tap the circular-arrow icon in the library and enter the HTTPS address of your hosted `update-manifest.json`. The current personal feed is `https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/update-manifest.json`. Long-press that icon later to change the update source. The app checks the manifest when asked, downloads a newer APK, checks its SHA-256 checksum, and opens Android's installer. Android may ask you to allow Sahitya Reader to install updates from this source.
+Tap the circular-arrow icon in the library to check the personal update feed at `https://raw.githubusercontent.com/Pranshu-Sahu/sahitya-reader-releases/main/update-manifest.json`, download a newer APK, verify its SHA-256 checksum, and open Android's installer. Long-press the icon to change the update source. Android may ask you to allow Sahitya Reader to install updates from this source and confirm the installation.
 
 Host a copy of `update-manifest.example.json` alongside your APK, then set:
 

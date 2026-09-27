@@ -21,6 +21,20 @@ public class LibraryDb extends SQLiteOpenHelper {
             return c.moveToFirst();
         }
     }
+    public void replaceBundledBook(String oldPath, String newPath, String title) {
+        ContentValues values = new ContentValues();
+        values.put("title", title);
+        values.put("path", newPath);
+        values.put("format", "CHAPTERS");
+        getWritableDatabase().update("books", values, "path=?", new String[]{oldPath});
+    }
+    public void deleteBookByPath(String path) {
+        long id = -1;
+        try (Cursor c = getReadableDatabase().query("books", new String[]{"id"}, "path=?", new String[]{path}, null, null, null)) {
+            if (c.moveToFirst()) id = c.getLong(0);
+        }
+        if (id != -1) deleteBook(id);
+    }
     public List<Book> books(String filter) {
         List<Book> out = new ArrayList<>(); String where = "All".equals(filter) ? null : "subject=?";
         try (Cursor c = getReadableDatabase().query("books", null, where, where == null ? null : new String[]{filter}, null, null, "title COLLATE NOCASE")) {
