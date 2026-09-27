@@ -16,6 +16,11 @@ public class LibraryDb extends SQLiteOpenHelper {
         ContentValues v = new ContentValues(); v.put("title", title); v.put("subject", subject); v.put("language", language); v.put("path", path); v.put("format", format);
         return getWritableDatabase().insert("books", null, v);
     }
+    public boolean hasBookPath(String path) {
+        try (Cursor c = getReadableDatabase().query("books", new String[]{"id"}, "path=?", new String[]{path}, null, null, null, "1")) {
+            return c.moveToFirst();
+        }
+    }
     public List<Book> books(String filter) {
         List<Book> out = new ArrayList<>(); String where = "All".equals(filter) ? null : "subject=?";
         try (Cursor c = getReadableDatabase().query("books", null, where, where == null ? null : new String[]{filter}, null, null, "title COLLATE NOCASE")) {

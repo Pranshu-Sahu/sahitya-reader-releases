@@ -38,7 +38,7 @@ public final class UpdateManager {
     public static void check(Context context,String manifestUrl,CheckCallback callback){
         WORKER.execute(()->{try{
             HttpURLConnection c=open(manifestUrl,"application/json");
-            byte[] bytes=readLimited(c.getInputStream(),MAX_MANIFEST_BYTES);c.disconnect();JSONObject json=new JSONObject(new String(bytes,java.nio.charset.StandardCharsets.UTF_8));
+            byte[] bytes=readLimited(c.getInputStream(),MAX_MANIFEST_BYTES);c.disconnect();String manifest=new String(bytes,java.nio.charset.StandardCharsets.UTF_8).trim();if(!manifest.startsWith("{"))throw new IOException("This link did not return update-manifest.json. Use the manifest link, not an APK or Drive preview link.");JSONObject json=new JSONObject(manifest);
             int version=json.getInt("versionCode");String name=json.optString("versionName",String.valueOf(version));String apk=requiredHttps(json.getString("apkUrl"));String hash=json.getString("sha256").toLowerCase(Locale.ROOT);String notes=json.optString("releaseNotes","");
             if(!hash.matches("[0-9a-f]{64}"))throw new IOException("The update manifest has an invalid SHA-256 checksum.");
             if(version<=BuildConfig.VERSION_CODE)post(()->callback.complete(null,null));else{UpdateInfo info=new UpdateInfo(version,name,apk,hash,notes);post(()->callback.complete(info,null));}

@@ -12,11 +12,11 @@ Open this directory in Android Studio, or run `gradlew.bat assembleDebug` with J
 - PDF for offline page reading and saved reading progress.
 - Use **Pair language** in the reader to show a second TXT/EPUB book alongside the current text.
 
-All imported files and reading data stay in the app's private local storage. The app includes no bundled books, account, or sync service.
+Imported files and reading data stay in the app's private local storage. The app includes no account or sync service.
 
 ## Godaan reading material
 
-An importable Hindi TXT draft and its page-by-page source record are in `content/godaan-first-100/`. In the app, choose **Add book** and select `godaan-first-100-pages-hi.txt`. Read `sources-and-qc.md` first: this is scan leaves 3–102, and its scan sequence should not be mistaken for 100 verified printed folios.
+The APK includes the Hindi TXT draft in the library automatically. It contains scan leaves 3–102, not 100 verified printed folios. Long-press the bundled book and choose **About this edition** to see its attribution and checking notes. The source text and page-by-page audit are in `content/godaan-first-100/`.
 
 ## In-app updates
 
